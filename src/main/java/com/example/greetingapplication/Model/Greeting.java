@@ -7,12 +7,14 @@ public class Greeting {
        this.message = message;
   }
   public long getId() {
-     return id;
+
+      return id;
  }
   public void setId(long id) {
        this.id = id;
  }
  public String getMessage() {
+
       return message;
   }
 public void setMessage(String message) {
