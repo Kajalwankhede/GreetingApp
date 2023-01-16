@@ -6,6 +6,7 @@ import com.example.greetingapplication.Repository.GreetingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Service
@@ -29,5 +30,10 @@ import java.util.concurrent.atomic.AtomicLong;
         String name = user.toString().isEmpty() ? "Hello world " : user.toString();
         return greetingRepository.save(new Greeting(counter.incrementAndGet(),String.format(template,name)));
     }
+ @Override
+ public Greeting getGreetingMsgById(long id){
+     Optional<Greeting> msg= greetingRepository.findById(id);
+     return  msg.get();
+ }
 }
 
