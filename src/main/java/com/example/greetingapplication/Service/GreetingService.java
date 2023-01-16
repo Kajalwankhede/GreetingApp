@@ -40,5 +40,15 @@ import java.util.concurrent.atomic.AtomicLong;
     public List<Greeting> getAllGreetingMsg(){
         return  greetingRepository.findAll();
  }
+@Override
+ public Greeting updateGreetingMsg(long id, User user) {
+    Optional<Greeting> greeting = greetingRepository.findById(id);
+      if (greeting.isPresent()){
+        String name = user.toString().isEmpty() ? "Hello world " : user.toString();
+        return greetingRepository.save(new Greeting(greeting.get().getId(),String.format(template,name)));
+        }
+        return null;
+    }
+
 }
 
