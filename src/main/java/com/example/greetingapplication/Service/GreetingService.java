@@ -49,6 +49,14 @@ import java.util.concurrent.atomic.AtomicLong;
         }
         return null;
     }
+@Override
+public Greeting deleteGreetingMsg(long id) {
+   Optional<Greeting> greeting = greetingRepository.findById(id);
+   if (greeting.isPresent()) {
+        greetingRepository.deleteById(id);
+  }
+  return greeting.get();
+    }
 
 }
 
