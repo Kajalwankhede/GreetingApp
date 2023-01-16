@@ -1,6 +1,7 @@
 package com.example.greetingapplication.Controller;
 
 import com.example.greetingapplication.Model.Greeting;
+import com.example.greetingapplication.Model.User;
 import com.example.greetingapplication.Service.IGreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,14 +21,23 @@ public class GreetingController {
         this.iGreetingService=iGreetingService;
     }
 
-    @GetMapping("/")
+ @GetMapping("/")
     public Greeting greeting(@RequestParam(value="name", defaultValue = "World") String name){
         return new Greeting(counter.incrementAndGet(),String.format(template,name));
     }
 
-    @GetMapping("/greeting")
-    public String greeting(){
-        return  iGreetingService.getGreetingMessage();
-    }
+//    @GetMapping("/greeting")
+//    public String greeting(){
+//        return  iGreetingService.getGreetingMessage();
+//    }
+@GetMapping("/greeting")
+  public String greeting(@RequestParam(name = "firstName", defaultValue = "Hello") String firstName,
+                       @RequestParam(name = "lastName", defaultValue = "World") String lastName){
+    User user = new User();
+    user.setFirstName(firstName);
+    user.setLastName(lastName);
+    return iGreetingService.getGreetingMessage(user);
+}
+
 
 }
