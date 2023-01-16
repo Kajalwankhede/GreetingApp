@@ -6,6 +6,7 @@ import com.example.greetingapplication.Repository.GreetingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -34,6 +35,10 @@ import java.util.concurrent.atomic.AtomicLong;
  public Greeting getGreetingMsgById(long id){
      Optional<Greeting> msg= greetingRepository.findById(id);
      return  msg.get();
+ }
+ @Override
+    public List<Greeting> getAllGreetingMsg(){
+        return  greetingRepository.findAll();
  }
 }
 
